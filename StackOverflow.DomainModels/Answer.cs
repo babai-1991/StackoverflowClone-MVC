@@ -18,11 +18,14 @@ namespace StackOverflow.DomainModels
         [ForeignKey("UserID")]
         public virtual User User{ get; set; }
 
-        
-        public Question Question { get; set; }
+        public int QuestionID { get; set; }
+        [ForeignKey("QuestionID")]
+        public virtual Question Question { get; set; }
 
         public int VotesCount { get; set; }
 
+        public int VoteId { get; set; }
+        [ForeignKey("VoteId")]
         public virtual IList<Vote> Votes{ get; set; }
     }
 }
