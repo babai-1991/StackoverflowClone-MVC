@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using StackOverflow.DomainModels;
 
-namespace StackOverflow.Repositories
+namespace StackOverflow.Repositories.Interfaces
 {
     public interface IUsersRepository
     {
