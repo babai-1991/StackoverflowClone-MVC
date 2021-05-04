@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace StackOverflow.DomainModels
 {
-    class StackOverflowDbContext:DbContext
+    public class StackOverflowDbContext:DbContext
     {
         public StackOverflowDbContext():base("StackOverflowDatabaseDbContext")
         {

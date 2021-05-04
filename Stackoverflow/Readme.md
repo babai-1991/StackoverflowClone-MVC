@@ -6,4 +6,4 @@ Service Layer representing the services. For every table, we are going to create
 
 The repositories contain the actual code for CRUD operation.
 
-
+Repository seats between data access Layer and the service layer.
