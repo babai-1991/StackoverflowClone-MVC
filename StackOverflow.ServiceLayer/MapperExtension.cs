@@ -4,7 +4,7 @@ namespace StackOverflow.ServiceLayer
 {
     public static class MapperExtension
     {
-        private static void IgnoreUnMapped(this IProfileExpression profile)
+        public static void IgnoreUnMapped(this IProfileExpression profile)
         {
             profile.ForAllMaps(IgnoreUnMappedProperties);
         }

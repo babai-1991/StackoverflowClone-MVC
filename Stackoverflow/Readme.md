@@ -1,14 +1,12 @@
-﻿In the **domain models project**  , we are going to add domain models which are related to entity framework. So all the entity framework related model classes we are going to place here.
+﻿--------New
+the main difference between Repository layer and the Service layer it is that the Repository layer will contain the actual methods to 
+call EF related LINQ queries. For example we could use db.Users.Where(u=>.....)
 
-The viewmodels contains the models which can be binded to the respective views.
+But in the service layer, we don't use the Linq to entities but we perform business logic.
 
-Service Layer representing the services. For every table, we are going to create a separate service which contains the methods for CRUD operation.
+So bottom line is Repository seats between Service Layer and Data Access Layer. Service Layer contains the business logic. 
 
-The repositories contain the actual code for CRUD operation.
+Service Layer seats between domain model and ViewModel because Controller should not access domain model directly, Controller can access the ViewModel. 
 
-Repository seats between data access Layer and the service layer.
+So the Service Layer responsibility is to Migration of data  between Domain Model to ViewModel and ViewModel to Domain model.
 
---------New
-so we have added the reference of the View models into service layer and into the UI project because in the service layer,
-we are trying to convert the data from the view model to domain model and domain model to view model. Also in UI project we will create View using
-ViewModels only.
