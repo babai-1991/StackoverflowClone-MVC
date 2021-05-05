@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AnswerViewModel.cs" />
+    <Compile Include="NewAnswerViewModel.cs" />
     <Compile Include="CategoryViewModel.cs" />
     <Compile Include="EditQuestionViewModel.cs" />
     <Compile Include="EditUserDetailsViewModel.cs" />
@@ -62,6 +63,7 @@
     <Compile Include="QuestionViewModel.cs" />
     <Compile Include="RegisterViewModel.cs" />
     <Compile Include="UserViewModel.cs" />
+    <Compile Include="VoteViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

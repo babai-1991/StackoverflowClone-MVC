@@ -1,19 +1,20 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
 
 namespace StackOverflow.ViewModels
 {
     public class AnswerViewModel
     {
-        [Required]
+        public int AnswerId { get; set; }
         public string AnswerText { get; set; }
-        [Required]
         public DateTime AnswerDateTime { get; set; }
-        [Required]
-        public int QuestionId { get; set; }
-        [Required]
         public int UserId { get; set; }
-        [Required]
+        public int QuestionId { get; set; }
         public int VotesCount { get; set; }
+
+        public virtual UserViewModel User { get; set; }
+        public virtual IList<VoteViewModel> Votes{ get; set; }
+
+        public int CurrentUserGivenVoteType { get; set; }
     }
 }
