@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using StackOverflow.DomainModels;
+using StackOverflow.Repositories.Interfaces;
 
-namespace StackOverflow.Repositories.Interfaces
+namespace StackOverflow.Repositories
 {
     public class QuestionRepository:IQuestionRepository
     {

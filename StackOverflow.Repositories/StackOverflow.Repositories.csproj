@@ -51,13 +51,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnswersRepository.cs" />
     <Compile Include="CategoriesRepository.cs" />
+    <Compile Include="Interfaces\IAnswersRepository.cs" />
     <Compile Include="Interfaces\ICategoriesRepository.cs" />
     <Compile Include="Interfaces\IQuestionRepository.cs" />
     <Compile Include="Interfaces\IUsersRepository.cs" />
-    <Compile Include="Interfaces\QuestionRepository.cs" />
+    <Compile Include="QuestionRepository.cs" />
+    <Compile Include="Interfaces\IVotesRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserRepository.cs" />
+    <Compile Include="VotesRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\StackOverflow.DomainModels\StackOverflow.DomainModels.csproj">
