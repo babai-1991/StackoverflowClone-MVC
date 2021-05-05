@@ -7,3 +7,8 @@ Service Layer representing the services. For every table, we are going to create
 The repositories contain the actual code for CRUD operation.
 
 Repository seats between data access Layer and the service layer.
+
+--------New
+so we have added the reference of the View models into service layer and into the UI project because in the service layer,
+we are trying to convert the data from the view model to domain model and domain model to view model. Also in UI project we will create View using
+ViewModels only.
