@@ -11,7 +11,7 @@ namespace StackOverflow.ServiceLayer
 {
     public class UsersService : IUsersService
     {
-        private IUsersRepository _usersRepository;
+        private readonly IUsersRepository _usersRepository;
 
         public UsersService()
         {
@@ -71,22 +71,76 @@ namespace StackOverflow.ServiceLayer
 
         public List<UserViewModel> GetAllUsers()
         {
-            throw new NotImplementedException();
+            List<User> users = _usersRepository.GetUsers();
+
+            var configuration = new MapperConfiguration(config =>
+            {
+                config.CreateMap<User, UserViewModel>();
+                config.IgnoreUnMapped();
+            });
+
+            IMapper mapper = configuration.CreateMapper();
+
+            List<UserViewModel> usersList = mapper.Map<List<User>, List<UserViewModel>>(users);
+            return usersList;
         }
 
         public UserViewModel GetUserByEmailAndPassword(string email, string password)
         {
-            throw new NotImplementedException();
+            UserViewModel model = null;
+            var passwordHash = Sha256HashGenerator.GenerateHash(password);
+            User users = _usersRepository.GetUsersByEmailAndPassword(email, passwordHash);
+
+            if (users != null)
+            {
+                var configuration = new MapperConfiguration(config =>
+                {
+                    config.CreateMap<User, UserViewModel>();
+                    config.IgnoreUnMapped();
+                });
+
+                IMapper mapper = configuration.CreateMapper();
+                model = mapper.Map<User, UserViewModel>(users);
+            }
+            return model;
         }
 
         public UserViewModel GetUserByEmail(string email)
         {
-            throw new NotImplementedException();
+            UserViewModel model = null;
+            User user = _usersRepository.GetUserByEmail(email);
+
+            if (user != null)
+            {
+                var configuration = new MapperConfiguration(config =>
+                {
+                    config.CreateMap<User, UserViewModel>();
+                    config.IgnoreUnMapped();
+                });
+
+                IMapper mapper = configuration.CreateMapper();
+                model = mapper.Map<User, UserViewModel>(user);
+            }
+            return model;
         }
 
         public UserViewModel GetUserByUserId(int userid)
         {
-            throw new NotImplementedException();
+            UserViewModel model = null;
+            User user = _usersRepository.GetsUsersById(userid);
+
+            if (user != null)
+            {
+                var configuration = new MapperConfiguration(config =>
+                {
+                    config.CreateMap<User, UserViewModel>();
+                    config.IgnoreUnMapped();
+                });
+
+                IMapper mapper = configuration.CreateMapper();
+                model = mapper.Map<User, UserViewModel>(user);
+            }
+            return model;
         }
     }
 }

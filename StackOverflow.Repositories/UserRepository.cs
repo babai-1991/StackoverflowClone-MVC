@@ -7,7 +7,7 @@ namespace StackOverflow.Repositories
 {
     public class UsersRepository : IUsersRepository
     {
-        private readonly  StackOverflowDbContext db;
+        private readonly StackOverflowDbContext db;
 
         public UsersRepository()
         {
@@ -22,7 +22,7 @@ namespace StackOverflow.Repositories
         public void UpdateUserDetails(User user)
         {
             User updateUser = db.Users.FirstOrDefault(u => u.UserId == user.UserId);
-            if (updateUser!=null)
+            if (updateUser != null)
             {
                 updateUser.Name = user.Name;
                 //cannot change email
@@ -57,23 +57,23 @@ namespace StackOverflow.Repositories
             return users;
         }
 
-        
-        public List<User> GetUsersByEmailAndPassword(string email, string password)
+
+        public User GetUsersByEmailAndPassword(string email, string password)
         {
-            List<User> users = db.Users.Where(u => u.Email == email && u.PasswordHash==password).ToList();
-            return users;
+            User user = db.Users.FirstOrDefault(u => u.Email == email && u.PasswordHash == password);
+            return user;
         }
 
-        public List<User> GetUserByEmail(string email)
+        public User GetUserByEmail(string email)
         {
-            List<User> users = db.Users.Where(u => u.Email == email).ToList();
-            return users;
+            User user = db.Users.FirstOrDefault(u => u.Email == email);
+            return user;
         }
 
-        public List<User> GetsUsersById(int userid)
+        public User GetsUsersById(int userid)
         {
-            List<User> users = db.Users.Where(u => u.UserId == userid).ToList();
-            return users;
+            User user = db.Users.FirstOrDefault(u => u.UserId == userid);
+            return user;
         }
 
         public int GetLatestUserId()

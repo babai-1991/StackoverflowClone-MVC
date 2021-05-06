@@ -11,9 +11,9 @@ namespace StackOverflow.Repositories.Interfaces
         void DeleteUser(int userid);
         List<User> GetUsers();
         //required when login
-        List<User> GetUsersByEmailAndPassword(string email, string password);
-        List<User> GetUserByEmail(string email);
-        List<User> GetsUsersById(int userid);
+        User GetUsersByEmailAndPassword(string email, string password);
+        User GetUserByEmail(string email);
+        User GetsUsersById(int userid);
         int GetLatestUserId();
     }
 }
