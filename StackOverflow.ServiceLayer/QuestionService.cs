@@ -108,7 +108,7 @@ namespace StackOverflow.ServiceLayer
                         answer.CurrentUserGivenVoteType = vote.VoteValue;
                     }
                 }
-            }
+            } 
             return questionViewModel;
         }
     }
