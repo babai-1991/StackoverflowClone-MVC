@@ -22,5 +22,15 @@ namespace Stackoverflow.Controllers
 
             return View(questionViewModels);
         }
+
+        public ActionResult About()
+        {
+            return View();
+        }
+
+        public ActionResult Contact()
+        {
+            return View();
+        } 
     }
 }
