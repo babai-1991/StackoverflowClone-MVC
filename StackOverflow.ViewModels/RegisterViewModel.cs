@@ -5,10 +5,11 @@ namespace StackOverflow.ViewModels
     public class RegisterViewModel
     {
         [Required]
-        [RegularExpression("/^[a-zA-Z]*$/")]
+        [MaxLength(10)]
+        //[RegularExpression("/^[a-zA-Z]*$/")]
         public string Name { get; set; }
         [Required]
-        [RegularExpression(@"/^\S+@\S+\.\S+$/")]
+        //[RegularExpression(@"/^\S+@\S+\.\S+$/")]
         public string  Email { get; set; }
         [Required]
         public string Password { get; set; }

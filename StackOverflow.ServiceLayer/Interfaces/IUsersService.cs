@@ -7,7 +7,7 @@ using StackOverflow.ViewModels;
 
 namespace StackOverflow.ServiceLayer.Interfaces
 {
-    interface IUsersService
+    public interface IUsersService
     {
         int InsertUser(RegisterViewModel registerViewModel);
         void UpdateUserDetails(EditUserDetailsViewModel editUserDetailsViewModel);

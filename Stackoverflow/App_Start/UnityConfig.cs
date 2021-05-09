@@ -3,7 +3,6 @@ using System.Web.Mvc;
 using StackOverflow.ServiceLayer;
 using StackOverflow.ServiceLayer.Interfaces;
 using Unity;
-using Unity.WebApi;
 
 namespace Stackoverflow
 {
@@ -13,6 +12,7 @@ namespace Stackoverflow
         {
             var container = new UnityContainer();
             container.RegisterType<IQuestionService, QuestionService>();
+            container.RegisterType<IUsersService, UsersService>();
             //Enable dependency injection for MVC5 ↓↓↓↓↓↓↓↓↓↓
             DependencyResolver.SetResolver(new Unity.Mvc5.UnityDependencyResolver(container));
             //Enable dependency injection for Web API ↓↓↓↓↓↓
