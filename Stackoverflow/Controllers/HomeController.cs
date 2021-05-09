@@ -3,15 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using StackOverflow.ServiceLayer.Interfaces;
+using StackOverflow.ViewModels;
 
 namespace Stackoverflow.Controllers
 {
     public class HomeController : Controller
     {
-        // GET: Home
+        private readonly IQuestionService _questionService;
+
+        public HomeController(IQuestionService questionService)
+        {
+            _questionService = questionService;
+        }
         public ActionResult Index()
         {
-            return View();
+            List<QuestionViewModel> questionViewModels = _questionService.GetQuestions().Take(10).ToList();
+
+            return View(questionViewModels);
         }
     }
 }

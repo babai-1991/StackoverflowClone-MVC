@@ -9,9 +9,9 @@ using StackOverflow.ViewModels;
 
 namespace StackOverflow.ServiceLayer
 {
-    class QuestionService : IQuestionService
+    public class QuestionService : IQuestionService
     {
-        private readonly IQuestionRepository _questionRepository = null;
+        private readonly IQuestionRepository _questionRepository;
 
         public QuestionService()
         {
@@ -65,6 +65,7 @@ namespace StackOverflow.ServiceLayer
 
         public List<QuestionViewModel> GetQuestions()
         {
+
             List<Question> questions = _questionRepository.GetQuestions();
             var configuration = new MapperConfiguration(config =>
             {
@@ -108,7 +109,7 @@ namespace StackOverflow.ServiceLayer
                         answer.CurrentUserGivenVoteType = vote.VoteValue;
                     }
                 }
-            } 
+            }
             return questionViewModel;
         }
     }

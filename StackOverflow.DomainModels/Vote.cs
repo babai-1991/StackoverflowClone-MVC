@@ -7,7 +7,7 @@ namespace StackOverflow.DomainModels
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int VoteID { get; set; }
+        public int VoteId { get; set; }
 
         public int UserID { get; set; }
         [ForeignKey("UserID")]

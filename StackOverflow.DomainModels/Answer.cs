@@ -24,8 +24,6 @@ namespace StackOverflow.DomainModels
 
         public int VotesCount { get; set; }
 
-        public int VoteId { get; set; }
-        [ForeignKey("VoteId")]
         public virtual IList<Vote> Votes{ get; set; }
     }
 }

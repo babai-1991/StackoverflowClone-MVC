@@ -3,7 +3,7 @@ using StackOverflow.ViewModels;
 
 namespace StackOverflow.ServiceLayer.Interfaces
 {
-    interface IQuestionService
+    public interface IQuestionService
     {
         void InsertQuestion(NewQuestionViewModel newQuestionViewModel);
         void UpdateQuestionDetails(EditQuestionViewModel editQuestionViewModel);

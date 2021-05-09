@@ -7,7 +7,7 @@ namespace StackOverflow.ViewModels
     {
         public int AnswerId { get; set; }
         public string AnswerText { get; set; }
-        public DateTime AnswerDateTime { get; set; }
+        public DateTime AnswerDateAndTime { get; set; }
         public int UserId { get; set; }
         public int QuestionId { get; set; }
         public int VotesCount { get; set; }

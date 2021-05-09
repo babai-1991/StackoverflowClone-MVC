@@ -6,20 +6,20 @@ namespace StackOverflow.ServiceLayer
     {
         public static void IgnoreUnMapped(this IProfileExpression profile)
         {
-            profile.ForAllMaps(IgnoreUnMappedProperties);
+            profile.ForAllMaps(IgnoreUnmappedProperties);
         }
 
-        private static void IgnoreUnMappedProperties(TypeMap map, IMappingExpression expression)
+        private static void IgnoreUnmappedProperties(TypeMap map, IMappingExpression expr)
         {
-            foreach (string unmappedProperty in map.GetUnmappedPropertyNames())
+            foreach (string propName in map.GetUnmappedPropertyNames())
             {
-                if (map.SourceType.GetProperty(unmappedProperty) != null)
+                if (map.SourceType.GetProperty(propName) != null)
                 {
-                    expression.ForSourceMember(unmappedProperty, option => option.Ignore());
+                    expr.ForSourceMember(propName, opt => opt.Ignore());
                 }
-                if (map.DestinationType.GetProperty(unmappedProperty) != null)
+                if (map.DestinationType.GetProperty(propName) != null)
                 {
-                    expression.ForSourceMember(unmappedProperty, option => option.Ignore());
+                    expr.ForMember(propName, opt => opt.Ignore());
                 }
             }
         }
