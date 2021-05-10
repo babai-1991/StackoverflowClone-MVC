@@ -52,7 +52,7 @@
             <div class="form-row">
                 <div class="form-group col-sm-6">
                     <label for="txtPassword">Password</label>
-                    <input type="password" class="form-control" id="txtPassword" placeholder="Password" name="Password" required="required" minlength="6" 
+                    <input type="password" class="form-control" id="txtPassword" placeholder="Password" name="Password" required="required" minlength="6"
                            oninput="form.ConfirmPassword.pattern = escapeRegExp(this.value)" />
                     <div class="valid-feedback">
                         Looks good!
@@ -98,7 +98,28 @@
         return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
     }
 
-    
+    $('#txtEmail').blur(() => {
+        debugger;
+        var email = $('#txtEmail').val();
+        $.ajax(`/api/account?email=${email}`)
+            .done((data) => {
+                if (data == "Found") {
+                    //$("#txtEmail").classList.add("is-invalid");
+                    $('.email-exist').text(`${email} is already registered`);
+                    $('.email-exist').parent('.form-group').find('.valid-feedback').css('color', '#fff');
+                }
+                else {
+                    //$("#txtEmail").classList.add("is-valid");
+                    $('.email-exist').text('');
+                    $('.email-exist').parent('.form-group').find('.valid-feedback').css('color','#28a745');
+                }
+                //console.log(data);
+            })
+            .fail((error) => {
+            })
+            .always(() => {
+            });
+    });
 </script>
 
 
