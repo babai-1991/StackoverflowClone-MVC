@@ -82,5 +82,11 @@ namespace Stackoverflow.Controllers
                 return View(viewModel);
             }
         }
+
+        public ActionResult LogOut()
+        {
+            Session.Abandon();
+            return RedirectToAction("Index","Home");
+        }
     }
 }
