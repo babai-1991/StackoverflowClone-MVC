@@ -31,6 +31,6 @@ namespace Stackoverflow.Controllers
         public ActionResult Contact()
         {
             return View();
-        } 
+        }
     }
 }
