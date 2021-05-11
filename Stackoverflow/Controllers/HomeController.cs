@@ -41,6 +41,8 @@ namespace Stackoverflow.Controllers
             return View(categories);
         }
 
+        [Route("allquestions")]
+
         public ActionResult Questions()
         {
             List<QuestionViewModel> questionViewModels = _questionService.GetQuestions();
