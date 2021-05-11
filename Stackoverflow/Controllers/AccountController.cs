@@ -131,5 +131,41 @@ namespace Stackoverflow.Controllers
                 return View(viewModel);
             }
         }
+
+        public ActionResult ChangePassword()
+        {
+            int userid = Convert.ToInt32(Session["CurrentUserId"]);
+            UserViewModel viewModel = _usersService.GetUserByUserId(userid);
+            //You can manually create and populate here 
+            //Or I am using AutoMapper
+
+            var configuration = new MapperConfiguration(config =>
+            {
+                config.CreateMap<UserViewModel,EditUserPasswordViewModel >();
+                config.IgnoreUnMapped();
+            });
+
+            IMapper mapper = configuration.CreateMapper();
+            EditUserPasswordViewModel editUserPasswordViewModel = mapper.Map<UserViewModel, EditUserPasswordViewModel>(viewModel);
+
+            return View(editUserPasswordViewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ChangePassword(EditUserPasswordViewModel viewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                viewModel.UserID = Convert.ToInt32(Session["CurrentUserId"]);
+                _usersService.UpdateUserPassword(viewModel);
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                ModelState.AddModelError("key", "invalid data");
+                return View(viewModel);
+            }
+        }
     }
 }

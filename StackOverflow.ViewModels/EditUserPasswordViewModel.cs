@@ -5,7 +5,7 @@ namespace StackOverflow.ViewModels
     public class EditUserPasswordViewModel
     {
         [Required]
-        public int UserId { get; set; }
+        public int UserID { get; set; }
         [Required]
         public string Email { get; set; }
         [Required]
