@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
+using StackOverflow.DomainModels;
+using StackOverflow.ServiceLayer;
 using StackOverflow.ServiceLayer.Interfaces;
 using StackOverflow.ViewModels;
 
@@ -16,6 +19,7 @@ namespace Stackoverflow.Controllers
         {
             _usersService = service;
         }
+
         public ActionResult Register()
         {
             return View();
@@ -66,8 +70,9 @@ namespace Stackoverflow.Controllers
 
                     if (model.IsAdmin)
                     {
-                        return RedirectToRoute(new { area = "Admin", controller = "AdminHome", action = "Index" });
+                        return RedirectToRoute(new {area = "Admin", controller = "AdminHome", action = "Index"});
                     }
+
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -86,7 +91,45 @@ namespace Stackoverflow.Controllers
         public ActionResult LogOut()
         {
             Session.Abandon();
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult ChangeProfile()
+        {
+            int userid = Convert.ToInt32(Session["CurrentUserId"]);
+            UserViewModel viewModel = _usersService.GetUserByUserId(userid);
+            //You can manually create and populate here 
+            //Or I am using AutoMapper
+
+            var configuration = new MapperConfiguration(config =>
+            {
+                config.CreateMap<UserViewModel, EditUserDetailsViewModel>();
+                config.IgnoreUnMapped();
+            });
+
+            IMapper mapper = configuration.CreateMapper();
+            EditUserDetailsViewModel editUserDetailsViewModel =
+                mapper.Map<UserViewModel, EditUserDetailsViewModel>(viewModel);
+
+            return View(editUserDetailsViewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ChangeProfile(EditUserDetailsViewModel viewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                viewModel.UserID = Convert.ToInt32(Session["CurrentUserId"]);
+                _usersService.UpdateUserDetails(viewModel);
+                Session["CurrentUserName"] = viewModel.Name;
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                ModelState.AddModelError("key","invalid data");
+                return View(viewModel);
+            }
         }
     }
 }
