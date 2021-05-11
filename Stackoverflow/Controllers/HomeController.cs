@@ -13,7 +13,7 @@ namespace Stackoverflow.Controllers
         private readonly IQuestionService _questionService;
         private readonly ICategoryService _categoryService;
 
-        public HomeController(IQuestionService questionService,ICategoryService categoryService)
+        public HomeController(IQuestionService questionService, ICategoryService categoryService)
         {
             _questionService = questionService;
             _categoryService = categoryService;
@@ -47,6 +47,14 @@ namespace Stackoverflow.Controllers
         {
             List<QuestionViewModel> questionViewModels = _questionService.GetQuestions();
             return View(questionViewModels);
+        }
+
+        public ActionResult Search(string search = "")
+        {
+            ViewBag.Search = search;
+            List<QuestionViewModel> viewModels = _questionService.GetQuestions()
+                .Where(q => q.QuestionName.ToLower().Contains(search.ToLower()) || q.Category.CategoryName.ToLower().Contains(search.ToLower())).ToList();
+            return View(viewModels);
         }
     }
 }
