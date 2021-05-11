@@ -11,10 +11,12 @@ namespace Stackoverflow.Controllers
     public class HomeController : Controller
     {
         private readonly IQuestionService _questionService;
+        private readonly ICategoryService _categoryService;
 
-        public HomeController(IQuestionService questionService)
+        public HomeController(IQuestionService questionService,ICategoryService categoryService)
         {
             _questionService = questionService;
+            _categoryService = categoryService;
         }
         public ActionResult Index()
         {
@@ -31,6 +33,18 @@ namespace Stackoverflow.Controllers
         public ActionResult Contact()
         {
             return View();
+        }
+
+        public ActionResult Categories()
+        {
+            List<CategoryViewModel> categories = _categoryService.GetCategories();
+            return View(categories);
+        }
+
+        public ActionResult Questions()
+        {
+            List<QuestionViewModel> questionViewModels = _questionService.GetQuestions();
+            return View(questionViewModels);
         }
     }
 }
